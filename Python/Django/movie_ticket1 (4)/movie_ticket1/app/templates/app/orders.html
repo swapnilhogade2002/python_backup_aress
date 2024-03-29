@@ -1,0 +1,58 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Ticket History{% endblock title %}
+{% block main-content %}
+<style>
+    .card-img {
+        width: 200px; /* Set the width */
+        height: 200px; /* Set the height */
+        object-fit: cover; /* Maintain aspect ratio and cover the entire area */
+    }
+</style>
+<div class="container my-5">
+    <h3>Welcome {{ request.user }}</h3>
+    <div class="row mt-4">
+        <div class="col-sm-2 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid"><a href="{% url 'orders' %}" class="btn btn-primary">Ticket History</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-10">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% for order in ticket_history %}
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ order.product.product_image.url }}" alt="" class="img-fluid card-img">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Movie Title: {{ order.product.titlee }}</h5>
+                                    <p class="card-text">Tickets: {{ order.quantity }}</p>
+                                    <p class="card-text">Price: {{ order.product.discounted_price }}</p>
+                                    {% if order.status == 'Pending' %}
+                                        <div class="alert alert-warning" role="alert">
+                                            Booking Pending
+                                        </div>
+                                    {% elif order.status == 'Booked' %}
+                                        <div class="alert alert-success" role="alert">
+                                            Ticket Booked
+                                        </div>
+                                    {% else %}
+                                        <div class="alert alert-info" role="alert">
+                                            {{ order.status }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

@@ -1,0 +1,8 @@
+{
+  "files.autoSave": "afterDelay",
+  "workbench.colorTheme": "Dracula",
+  "auto-rename-tag.activationOnLanguage": [
+    
+    "*"
+  ]
+}

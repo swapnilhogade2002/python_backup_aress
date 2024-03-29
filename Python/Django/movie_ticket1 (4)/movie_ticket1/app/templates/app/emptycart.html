@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        {% if carts %}
+            <h1 class="text-center mb-5">Book Your Ticket</h1>
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Book your ticket....Huryy Up !</h3>
+                        {% for cart in carts %}
+                            <hr>
+                            <!-- Display cart items here -->
+                        {% endfor %}
+                        <hr class="text-muted">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <!-- Display total amount and checkout button here -->
+            </div>
+        {% else %}
+            <div class="col-sm-12 text-center">
+                <h2>Your cart is empty</h2>
+                <!-- Display an image or icon indicating empty cart -->
+                <img src="{% static 'app/images/empty_cart_icon.png' %}" alt="Empty Cart" class="img-fluid mt-4">
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <!-- Display payment methods here -->
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

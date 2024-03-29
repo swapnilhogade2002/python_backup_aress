@@ -1,0 +1,9 @@
+Create Project:
+python -m django startproject(project_name)
+
+  	Start Project:
+	python manage.py runserver / (port)
+	
+	New Application:
+	python manage.py startapp(application_name)
+	(IMP: registe in setting.py)

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .er{
+            color:red
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for fm in form %}
+            {{fm.label_tag}}
+            {{fm}}
+            {{fm.errors|striptags}}<br>
+        {% endfor %}
+
+        <input type="submit" value="submit">
+    </form>
+
+      {% comment %} lgoin error {% endcomment %}
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p class="er">{{error}}</p> 
+        {% endfor %}
+      {% endif %} <br>
+
+    <a href="{% url 'login'%}">login</a>
+</body>
+</html>
