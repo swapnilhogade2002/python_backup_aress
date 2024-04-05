@@ -1,0 +1,87 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row mt-5">
+  <div class="col-sm-12">
+    <h4>Order Summary</h4>
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Poster </th>
+          <th>Movie</th>
+          <th>Tickets</th>
+          <th>Price</th>
+          <th>description</th>
+          <th>theater_name</th>
+          <th>show_time</th>
+          <th>address</th>  
+          <th>Book_seats</th>  
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+        <tr>
+          <td><img src="{{ item.product.product_image.url }}" alt="{{ item.product.titlee }}" class="img-thumbnail" width="600"></td>
+          <td>{{ item.product.titlee }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.product.discounted_price }}</td>
+          <td>{{ item.product.description }}</td>
+          <td>{{ item.product.theater_name }}</td>
+          <td>{{ item.product.show_time }}</td>
+          <td>{{ item.product.address }}</td>
+
+          <td>
+              <!-- Dropdown button for selecting seats -->                   
+              <form method="post" action="{% url 'book_tickets' %}">
+                {% csrf_token %}
+                <input type="hidden" name="movie_id" value="{{ item.product.id }}">
+                <table>
+                    <tr>
+                        <td><input type="checkbox" name="selected_seats" value="Seat 1"></td>
+                        <td><input type="checkbox" name="selected_seats" value="Seat 2"></td>
+                        <td><input type="checkbox" name="selected_seats" value="Seat 3"></td>
+                        <td><input type="checkbox" name="selected_seats" value="Seat 4"></td>
+                        <td><input type="checkbox" name="selected_seats" value="Seat 5"></td>
+                        <td><input type="checkbox" name="selected_seats" value="Seat 6"></td>
+                        <td><input type="checkbox" name="selected_seats" value="Seat 7"></td>
+                        <td><input type="checkbox" name="selected_seats" value="Seat 8"></td>
+                        <td><input type="checkbox" name="selected_seats" value="Seat 9"></td>
+                        <td><input type="checkbox" name="selected_seats" value="Seat 10"></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" name="selected_seats" value="Seat 11"></td>
+                      <td><input type="checkbox" name="selected_seats" value="Seat 12"></td>
+                      <td><input type="checkbox" name="selected_seats" value="Seat 13"></td>
+                      <td><input type="checkbox" name="selected_seats" value="Seat 14"></td>
+                      <td><input type="checkbox" name="selected_seats" value="Seat 15"></td>
+                      <td><input type="checkbox" name="selected_seats" value="Seat 16"></td>
+                      <td><input type="checkbox" name="selected_seats" value="Seat 17"></td>
+                      <td><input type="checkbox" name="selected_seats" value="Seat 18"></td>
+                      <td><input type="checkbox" name="selected_seats" value="Seat 19"></td>
+                      <td><input type="checkbox" name="selected_seats" value="Seat 20"></td>  
+                    </tr>  
+                </table>
+                <button type="submit" class="btn btn-info btn-sm">Book Tickets</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="fw-bold">Total Amount: {{ total_amount | floatformat:"2" }}</p>
+    <small>*Book tickets will not be cancel.</small>
+  </div>
+ </div>
+ <div class="row mt-3">
+    <div class="col-sm-12 text-end">
+      <hr>
+      <form action="/paymentdone">  
+        <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

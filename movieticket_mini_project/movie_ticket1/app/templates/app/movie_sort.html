@@ -1,0 +1,85 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Movies Now{% endblock title %}
+{% block main-content %}
+<div class="container">
+
+
+    
+    <div class="row mt-5">
+        <h1 class="text-bold text-center" style="color: red; font-size: 36px; margin-bottom: 20px; text-decoration: underline;">Thriller Movies</h1>
+        <!-- Search Form -->
+        <form action="{% url 'thriller_sort' %}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search movies by title or theater name" aria-label="Search" aria-describedby="button-search">
+                <button class="btn btn-primary" type="submit" id="button-search">Search</button>
+            </div>
+        </form>
+
+        <!-- Pagination -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center ">
+                    {% if thriller_movies.has_previous %}
+                    <a href="?page=1" class="btn btn-primary">First</a>
+                    <a href="?page={{ thriller_movies.previous_page_number }}" class="btn btn-info">Previous</a>
+                    {% endif %}
+                    <span class="current-page">Page {{ thriller_movies.number }} of {{ thriller_movies.paginator.num_pages }}</span>
+                    {% if thriller_movies.has_next %}
+                    <a href="?page={{ thriller_movies.next_page_number }}" class="btn btn-primary">Next</a>
+                    <a href="?page={{ thriller_movies.paginator.num_pages }}" class="btn btn-danger">Last</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% for movie in thriller_movies  %}
+            <a href="{% url 'product-detail' movie.id %}" class="btn">
+                <div class="card">
+                    <div class="row">
+                        <div class="col">
+                            <img src="{{ movie.product_image.url }}"  alt="{{ movie.titlee }}" height="200px" width="200px">
+                        </div>
+                    </div>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ movie.titlee }}</h5>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold">Ticket Price (Rs.):</td>
+                                    <td>{{ movie.discounted_price }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Movie Name:</td>
+                                    <td>{{ movie.brand }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Description:</td>
+                                    <td>{{ movie.description }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Theater Name:</td>
+                                    <td>{{ movie.theater_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Show Time:</td>
+                                    <td>{{ movie.show_time }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Address:</td>
+                                    <td>{{ movie.address }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </a>
+            {% endfor %}
+        </div>
+    </div>
+   
+</div>
+
+
+
+{% endblock main-content %}

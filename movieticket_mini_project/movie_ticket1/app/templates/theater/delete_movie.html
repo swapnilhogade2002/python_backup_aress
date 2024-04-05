@@ -1,0 +1,13 @@
+{% extends 'theater/base.html' %}
+{% block title %}Delete Movie{% endblock title %}
+{% block main-content %}
+<div class="container">
+    <h1>Confirm Delete Movie</h1>
+    <p>Are you sure you want to delete "{{ movie.titlee }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'moviesviewtheater' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock main-content %}

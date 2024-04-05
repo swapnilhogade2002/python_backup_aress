@@ -1,0 +1,85 @@
+.owl-carousel .item{
+ /* border: 1px solid black; */
+ font-size: 24px;
+ text-align: center;
+ margin-top: 20px;;
+}
+
+.owl-next{
+ float:right;
+}
+.owl-prev{
+ float:left;
+}
+.owl-prev span{
+ font-size: 24px;
+ font-weight: bold;
+}
+.owl-next span{
+ font-size: 24px;
+ font-weight: bold;
+}
+
+.carousel-item img {
+  height: 400px; /* Set the desired height here */
+  /* Ensure images maintain aspect ratio and cover the entire area */
+}
+
+
+/* ticket pdf css */
+.ticket-details {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.ticket-details h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.details {
+  font-size: 16px;
+}
+
+.details p {
+  margin-bottom: 5px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.status {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.pending {
+  background-color: yellow;
+}
+
+.booked {
+  background-color: green;
+  color: white;
+}
+
+
+/* seat check box */
+.dropdown-menu-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dropdown-menu-horizontal .dropdown-item {
+  flex: 0 0 auto;
+}
+
+
+/* add movie form */
+
+
+

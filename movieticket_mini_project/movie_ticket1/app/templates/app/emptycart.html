@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        {% if carts %}
+            <h1 class="text-center mb-5">Your Cart</h1>
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Your Tickets</h3>
+                        {% for cart in carts %}
+                            <hr>
+                            <!-- Display ticket details here -->
+                        {% endfor %}
+                        <hr class="text-muted">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <!-- Display total amount and checkout button here -->
+            </div>
+        {% else %}
+            <div class="col-sm-12 text-center">
+                <h2 class="text-bold text-center" style="color: red; font-size: 31px; margin-top: 20px;">Please Buy A Ticket !!!! (No Ticket)</h2>
+                <!-- Display an image indicating empty cart -->
+                <img src="https://static.toiimg.com/thumb/msid-92030908,width-400,height-225,resizemode-72/92030908.jpg" alt="Empty Cart" class="img-fluid mt-4">
+
+                <!-- Replace the above URL with the URL of your desired image -->
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <!-- Display payment methods here -->
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

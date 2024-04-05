@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Ticket History{% endblock title %}
+{% block main-content %}
+
+<div class="ticket-details">
+    <h2>Ticket Details</h2>
+    <div class="details">
+        <p><span class="label">Movie Title:</span> {{ order.product.titlee }}</p>
+        <p><span class="label">Tickets:</span> {{ order.quantity }}</p>
+        <p><span class="label">Price (per ticket):</span> {{ order.product.discounted_price }}</p>
+        <p><span class="label">Order Date:</span> {{ order.ordered_date }}</p>
+        <p><span class="label">Theater:</span> {{ order.product.theater_name }}</p>
+        <p><span class="label">Address:</span> {{ order.product.address }}</p>
+        <p><span class="label">Show Time:</span> {{ order.product.show_time }}</p>
+        <p><span class="label">Booking Date & Time:</span> {{ order.ordered_date }}</p>
+        <p><span class="label">Status:</span> {% if order.status == 'Pending' %}
+            <span class="status pending">Booking Pending</span>
+            {% elif order.status == 'Booked' %}
+            <span class="status booked">Ticket Booked</span>
+            {% else %}
+            <span class="status">{{ order.status }}</span>
+            {% endif %}
+        </p>
+    </div>
+</div>
+
+
+{% endblock main-content %}
+
+
+
+
+
+
+
+
